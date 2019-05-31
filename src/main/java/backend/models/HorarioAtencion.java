@@ -1,4 +1,7 @@
 package backend.models;
+
+import java.time.LocalDate;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -13,8 +16,9 @@ public class HorarioAtencion {
 	public String friday;
 	public String saturday;
 	public String sunday;
-	
-	public HorarioAtencion(String monday, String tuesday, String wednesday, String thursday, String friday, String saturday, String sunday) {
+	public LocalDate createdAt;
+
+	public HorarioAtencion(String monday, String tuesday, String wednesday, String thursday, String friday, String saturday, String sunday, LocalDate createdAt) {
 		this.monday = monday;
 		this.tuesday = tuesday;
 		this.wednesday = wednesday;
@@ -22,6 +26,7 @@ public class HorarioAtencion {
 		this.friday = friday;
 		this.saturday = saturday;
 		this.sunday = sunday;
+		this.createdAt = createdAt;
 	}
 
 	public String get_id() {
@@ -86,5 +91,13 @@ public class HorarioAtencion {
 
 	public void setSunday(String sunday) {
 		this.sunday = sunday;
+	}
+
+	public LocalDate getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDate createdAt) {
+		this.createdAt = createdAt;
 	}
 }

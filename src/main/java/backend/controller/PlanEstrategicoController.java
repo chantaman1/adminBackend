@@ -99,16 +99,7 @@ public class PlanEstrategicoController {
 				return result;
 			}else {
 				PlanEstrategico plan = planEstrategicoService.updateVision(vision);
-				if(plan == null) {
-					map.put("status", "401");
-					map.put("message", "STRATEGIC PLAN NOT CREATED!.");
-					result.add(map);
-					return result;
-				}
-				map.put("status", "200");
-				map.put("message", "OK");
-				result.add(map);
-				return result;
+				return getHashMaps(map, result, plan);
 			}
 		}
 		else {
@@ -132,16 +123,7 @@ public class PlanEstrategicoController {
 				return result;
 			}else {
 				PlanEstrategico plan = planEstrategicoService.updateMision(mision);
-				if(plan == null) {
-					map.put("status", "401");
-					map.put("message", "STRATEGIC PLAN NOT CREATED!.");
-					result.add(map);
-					return result;
-				}
-				map.put("status", "200");
-				map.put("message", "OK");
-				result.add(map);
-				return result;
+				return getHashMaps(map, result, plan);
 			}
 		}
 		else {
@@ -165,16 +147,7 @@ public class PlanEstrategicoController {
 				return result;
 			}else {
 				PlanEstrategico plan = planEstrategicoService.updateObjetivo(objetivo);
-				if(plan == null) {
-					map.put("status", "401");
-					map.put("message", "STRATEGIC PLAN NOT CREATED!.");
-					result.add(map);
-					return result;
-				}
-				map.put("status", "200");
-				map.put("message", "OK");
-				result.add(map);
-				return result;
+				return getHashMaps(map, result, plan);
 			}
 		}
 		else {
@@ -198,16 +171,7 @@ public class PlanEstrategicoController {
 				return result;
 			}else {
 				PlanEstrategico plan = planEstrategicoService.updateEstrategia(estrategia);
-				if(plan == null) {
-					map.put("status", "401");
-					map.put("message", "STRATEGIC PLAN NOT CREATED!.");
-					result.add(map);
-					return result;
-				}
-				map.put("status", "200");
-				map.put("message", "OK");
-				result.add(map);
-				return result;
+				return getHashMaps(map, result, plan);
 			}
 		}
 		else {
@@ -231,24 +195,27 @@ public class PlanEstrategicoController {
 				return result;
 			}else {
 				PlanEstrategico plan = planEstrategicoService.updateValor(valor);
-				if(plan == null) {
-					map.put("status", "401");
-					map.put("message", "STRATEGIC PLAN NOT CREATED!.");
-					result.add(map);
-					return result;
-				}
-				map.put("status", "200");
-				map.put("message", "OK");
-				result.add(map);
-				return result;
+				return getHashMaps(map, result, plan);
 			}
-		}
-		else {
+		} else {
 			map.put("status", "400");
 			map.put("message", "WRONG API KEY.");
 			result.add(map);
 			return result;
 		}
+	}
+
+	private List<HashMap<String, String>> getHashMaps(HashMap<String, String> map, List<HashMap<String, String>> result, PlanEstrategico plan) {
+		if (plan == null) {
+			map.put("status", "401");
+			map.put("message", "STRATEGIC PLAN NOT CREATED!.");
+			result.add(map);
+			return result;
+		}
+		map.put("status", "200");
+		map.put("message", "OK");
+		result.add(map);
+		return result;
 	}
 
 }

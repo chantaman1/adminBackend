@@ -8,17 +8,15 @@ public class IntegranteOrganigrama {
 	@Id
 	public String _id;
 	public String firstName;
-	public String fatherLastName;
-	public String motherLastName;
+	public String lastName;
 	public String photoUrl;
 	public String position;
 	public int parent;
 	public int child;
-	
-	public IntegranteOrganigrama(String firstName, String fatherLastName, String motherLastName, String photoUrl, String position, int parent, int child) {
+
+	public IntegranteOrganigrama(String firstName, String lastName, String photoUrl, String position, int parent, int child) {
 		this.firstName = firstName;
-		this.fatherLastName = fatherLastName;
-		this.motherLastName = motherLastName;
+		this.lastName = lastName;
 		this.photoUrl = photoUrl;
 		this.position = position;
 		this.parent = parent;
@@ -41,20 +39,12 @@ public class IntegranteOrganigrama {
 		this.firstName = firstName;
 	}
 
-	public String getFatherLastName() {
-		return fatherLastName;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setFatherLastName(String fatherLastName) {
-		this.fatherLastName = fatherLastName;
-	}
-
-	public String getMotherLastName() {
-		return motherLastName;
-	}
-
-	public void setMotherLastName(String motherLastName) {
-		this.motherLastName = motherLastName;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getPhotoUrl() {
