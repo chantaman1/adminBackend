@@ -22,15 +22,15 @@ public class ServicioService{
   }
   
   public Servicio getById(String _id) {
-	  return servicioRepository.findBy_id(_id);
+	  return servicioRepository.findById(_id);
   }
 
   public Servicio getByNombre(String nombre) {
-	  return servicioRepository.findServicioByNombre(nombre);
+	  return servicioRepository.findByNombre(nombre);
   }
 
   public Servicio updateNombre(String nombre, String _id) {
-		Servicio servicio = servicioRepository.findBy_id(_id);
+		Servicio servicio = servicioRepository.findById(_id);
 		if(servicio==NULL) {
 			return null;
 		}
@@ -40,7 +40,7 @@ public class ServicioService{
 	}
 	
 	public Servicio updateDescripcion(String descripcion, String _id) {
-		Servicio servicio = servicioRepository.findBy_id(_id);
+		Servicio servicio = servicioRepository.findById(_id);
 		if(servicio==NULL) {
 			return null;
 		}
@@ -49,7 +49,7 @@ public class ServicioService{
 	}
 	
 	public Servicio updateCompromiso(String compromiso, String _id) {
-		Servicio servicio = servicioRepository.findBy_id(_id);
+		Servicio servicio = servicioRepository.findById(_id);
 		if(servicio==NULL) {
 			return null;
 		}
@@ -58,7 +58,7 @@ public class ServicioService{
 	}
 	
 	public Servicio updateTarifa(String tarifa, String _id) {
-		Servicio servicio = servicioRepository.findBy_id(_id);
+		Servicio servicio = servicioRepository.findById(_id);
 		if(servicio==NULL) {
 			return null;
 		}
@@ -66,7 +66,27 @@ public class ServicioService{
 		return servicioRepository.save(servicio);
 	}
 	
-	
+	/*Actualiza el servicio*/
+	public void updateServicio(String _id, Servicio servicio){
+		Servicio servicio = servicioRepository.findById(_id);
+		servicio.set(servicio);
+		return servicio;
+
+
+	}
+	/*Elimina todos los servicios*/
+	public void deleteAll(){
+		servicioRepository.deleteAll();
+
+	}
+
+	/*Elimina un servicio*/
+	public void delete(String id){
+		Servicio servicio = servicioRepository.findById(id);
+		servicioRepository.delete(servicio);
+
+
+	}
   
   
   

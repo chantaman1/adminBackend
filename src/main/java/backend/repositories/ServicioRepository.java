@@ -5,5 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import backend.models.Servicio;
 
 public interface ServicioRepository extends MongoRepository<Servicio, String>{
-	public Servicio findServicioByNombre(String Nombre);
+	public Servicio findByNombre(String nombre);
+	public Servicio findById(String _id);
 }

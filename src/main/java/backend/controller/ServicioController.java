@@ -24,6 +24,7 @@ public class ServicioController {
 	@Autowired
 	private ServicioService servicioService;
 
+	/*Crear servicio*/
 	@RequestMapping(value = "/servicio/create", method = RequestMethod.POST)
 	public List<HashMap<String, String>> create(@RequestBody Map<String, Object> jsonData, @RequestParam String apiKey) {
 		HashMap<String, String> map = new HashMap<>();
@@ -34,7 +35,7 @@ public class ServicioController {
 			Servicio servicio = servicioService.getByNombre(jsonData.get("nombre").toString());
 
 			if(servicio==NULL){/*No hay servicios con el mismo nombre*/
-				servicios.create(jsonData.get("nombre").toString(), jsonData.get("descripcion").toString(), jsonData.get("compromiso").toString(), jsonData.get("tarifa").toString());
+				servicio.create(jsonData.get("nombre").toString(), jsonData.get("descripcion").toString(), jsonData.get("compromiso").toString(), jsonData.get("tarifa").toString());
 				map.put("status", "201");
 				map.put("message", "OK");
 				result.add(map);
@@ -54,8 +55,41 @@ public class ServicioController {
 	}/*Fin create*/
 
 
+	/*Obtener servicio por nombre*/
+	@RequestMapping(value = "/servicio/getServicio", method = RequestMethod.GET)
+	public Servicio getServicio(@RequestParam String nombre, @RequestParam String api_key) {
+        return servicioService.getByNombre(nombre);
+		
+	}/*Fin GET*/
+
+	/*Obtener todos los servicios*/
+	@RequestMapping(value = "/servicio/getAll", method = RequestMethod.GET)
+	public List<Servicio> getAll() {
+		return servicioService.getAll();
+	}
 
 
+	/*Actualizar Servicio*/
+	@RequestMapping(value = "/servicio/updateServicio/{id}", method = RequestMethod.PUT)
+	public void updateServicio(@RequestParam Servicio servicio, @RequestParam String api_key, @PathVariable String id) {
+		servicioService.updateServicio(id, servicio);
+	}
+
+	/*Eliminar servicio*/
+	@RequestMapping(value="/servicio/delete/{id}", method = RequestMethod.DELETE)
+	public String delete(@RequestParam String id){
+		servicioService.delete(id);
+		return "Eliminado" + id;
+
+	}
+
+	/*Eliminar todos los servicios*/
+	@RequestMapping(value="/servicio/deleteAll", method = RequestMethod.DELETE)
+	public String deleteAll(){
+		servicioService.deleteAll();
+		return "Eliminados los servicios";
+
+	}
 
 
 }/*Fin controlador*/
