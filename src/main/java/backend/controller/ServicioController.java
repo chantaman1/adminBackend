@@ -5,12 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import backend.extra.ApiKey;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import backend.models.Servicio;
@@ -34,8 +31,8 @@ public class ServicioController {
 
 			Servicio servicio = servicioService.getByNombre(jsonData.get("nombre").toString());
 
-			if(servicio==NULL){/*No hay servicios con el mismo nombre*/
-				servicio.create(jsonData.get("nombre").toString(), jsonData.get("descripcion").toString(), jsonData.get("compromiso").toString(), jsonData.get("tarifa").toString());
+			if(servicio == null){/*No hay servicios con el mismo nombre*/
+				servicioService.create(jsonData.get("nombre").toString(), jsonData.get("descripcion").toString(), jsonData.get("compromiso").toString(), jsonData.get("tarifa").toString());
 				map.put("status", "201");
 				map.put("message", "OK");
 				result.add(map);
@@ -71,7 +68,7 @@ public class ServicioController {
 
 	/*Actualizar Servicio*/
 	@RequestMapping(value = "/servicio/updateServicio/{id}", method = RequestMethod.PUT)
-	public void updateServicio(@RequestParam Servicio servicio, @RequestParam String api_key, @PathVariable String id) {
+	public void updateServicio(@RequestParam Servicio servicio, @PathVariable String id) {
 		servicioService.updateServicio(id, servicio);
 	}
 

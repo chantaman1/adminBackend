@@ -6,5 +6,4 @@ import backend.models.Servicio;
 
 public interface ServicioRepository extends MongoRepository<Servicio, String>{
 	public Servicio findByNombre(String nombre);
-	public Servicio findById(String _id);
 }

@@ -22,7 +22,7 @@ public class ServicioService{
   }
   
   public Servicio getById(String _id) {
-	  return servicioRepository.findById(_id);
+	  return servicioRepository.findById(_id).get();
   }
 
   public Servicio getByNombre(String nombre) {
@@ -30,8 +30,8 @@ public class ServicioService{
   }
 
   public Servicio updateNombre(String nombre, String _id) {
-		Servicio servicio = servicioRepository.findById(_id);
-		if(servicio==NULL) {
+		Servicio servicio = servicioRepository.findById(_id).get();
+		if(servicio == null) {
 			return null;
 		}
 		
@@ -40,8 +40,8 @@ public class ServicioService{
 	}
 	
 	public Servicio updateDescripcion(String descripcion, String _id) {
-		Servicio servicio = servicioRepository.findById(_id);
-		if(servicio==NULL) {
+		Servicio servicio = servicioRepository.findById(_id).get();
+		if(servicio == null) {
 			return null;
 		}
 		servicio.setDescripcion(descripcion);
@@ -49,8 +49,8 @@ public class ServicioService{
 	}
 	
 	public Servicio updateCompromiso(String compromiso, String _id) {
-		Servicio servicio = servicioRepository.findById(_id);
-		if(servicio==NULL) {
+		Servicio servicio = servicioRepository.findById(_id).get();
+		if(servicio == null) {
 			return null;
 		}
 		servicio.setCompromiso(compromiso);
@@ -58,8 +58,8 @@ public class ServicioService{
 	}
 	
 	public Servicio updateTarifa(String tarifa, String _id) {
-		Servicio servicio = servicioRepository.findById(_id);
-		if(servicio==NULL) {
+		Servicio servicio = servicioRepository.findById(_id).get();
+		if(servicio == null) {
 			return null;
 		}
 		servicio.setTarifa(tarifa);
@@ -68,11 +68,9 @@ public class ServicioService{
 	
 	/*Actualiza el servicio*/
 	public void updateServicio(String _id, Servicio servicio){
-		Servicio servicio = servicioRepository.findById(_id);
-		servicio.set(servicio);
-		return servicio;
-
-
+		Servicio servicios = servicioRepository.findById(_id).get();
+		//servicio.set(servicios);
+		servicioRepository.save(servicio);
 	}
 	/*Elimina todos los servicios*/
 	public void deleteAll(){
@@ -82,7 +80,7 @@ public class ServicioService{
 
 	/*Elimina un servicio*/
 	public void delete(String id){
-		Servicio servicio = servicioRepository.findById(id);
+		Servicio servicio = servicioRepository.findById(id).get();
 		servicioRepository.delete(servicio);
 
 
