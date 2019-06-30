@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/Organigrama")
 public class IntegranteOrganigramaController {
     @Autowired
     IntegranteOrganigramaService integranteOrganigramaService;
@@ -18,7 +17,7 @@ public class IntegranteOrganigramaController {
     @Autowired
     MongoOperations mongoOperations;
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PostMapping("/organigrama/create")
     public List<IntegranteOrganigrama> create(@RequestBody Map<String, Object> jsonData){
         List<IntegranteOrganigrama> integrantes = integranteOrganigramaService.findAll();
         IntegranteOrganigrama nuevo = new IntegranteOrganigrama(jsonData.get("firstName").toString(), jsonData.get("lastName").toString(), jsonData.get("photoUrl").toString(), jsonData.get("position").toString(), Integer.parseInt(jsonData.get("parent").toString()), Integer.parseInt(jsonData.get("child").toString()));
@@ -26,17 +25,17 @@ public class IntegranteOrganigramaController {
         return integrantes;
     }
 
-    @RequestMapping(value = "/getIntegrante/nombre", method = RequestMethod.GET)
+    @GetMapping("/organigrama/getIntegrante/{nombre}/{apellido}")
     public IntegranteOrganigrama findByName(@RequestParam String nombre, @RequestParam String apellido){
         return integranteOrganigramaService.findByName(nombre, apellido);
     }
 
-    @RequestMapping(value = "/getIntegrante/nombre", method = RequestMethod.GET)
+    @GetMapping("/organigrama/getIntegrante/position/{position}")
     public List<IntegranteOrganigrama> findByPosition(@RequestParam String position){
         return integranteOrganigramaService.findByPosition(position);
     }
 
-    @RequestMapping(value = "/updateIntegrante", method = RequestMethod.POST)
+    @PostMapping("/organigrama/updateIntegrante")
     public IntegranteOrganigrama updateIntegrante(@RequestParam Map<String, Object> jsonData){
         String firtName = jsonData.get("firtName").toString();
         String lastName = jsonData.get("lastName").toString();
@@ -54,7 +53,7 @@ public class IntegranteOrganigramaController {
         return integranteOrganigramaService.update(res);
     }
 
-    @RequestMapping(value = "/deleteIntegrante", method = RequestMethod.DELETE)
+    @DeleteMapping("/organigrama/deleteIntegrante")
     public void deleteIntegrante(@RequestParam Map<String, Object> jsonData){
         IntegranteOrganigrama res = integranteOrganigramaService.findByName(jsonData.get("firstName").toString(), jsonData.get("lastName").toString());
         mongoOperations.remove(res);

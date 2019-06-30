@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 public interface IntegranteOrganigramaRepository extends MongoRepository<IntegranteOrganigrama, String> {
-    List<IntegranteOrganigrama> getByName(String firstName);
+    List<IntegranteOrganigrama> getByFirstName(String firstName);
     List<IntegranteOrganigrama> getByPosition(String position);
 }
