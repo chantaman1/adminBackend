@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Component
 public class EntradaDiccionarioService {
@@ -21,60 +22,80 @@ public class EntradaDiccionarioService {
     }
 
     public EntradaDiccionario updateEntradaDiccionario(String id, String descripcion, int indentacion){
-        EntradaDiccionario res = entradaDiccionarioRepository.findById(id).get();
-        if(res != null){
-            res.setDescripcion(descripcion);
-            res.setIndentacion(indentacion);
-            return entradaDiccionarioRepository.save(res);
+        try {
+            EntradaDiccionario res = entradaDiccionarioRepository.findById(id).get();
+            if (res != null) {
+                res.setDescripcion(descripcion);
+                res.setIndentacion(indentacion);
+                return entradaDiccionarioRepository.save(res);
+            } else {
+                return null;
+            }
         }
-        else{
+        catch (NoSuchElementException nse) {
             return null;
         }
     }
 
     public boolean checkEntradaDiccionario(String id){
-        EntradaDiccionario res = entradaDiccionarioRepository.findById(id).get();
-        if(res != null){
-            if(res.get_id().equals(id)){
-                return true;
-            }
-            else{
+        try {
+            EntradaDiccionario res = entradaDiccionarioRepository.findById(id).get();
+            if (res != null) {
+                if (res.get_id().equals(id)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
                 return false;
             }
         }
-        else{
+        catch (NoSuchElementException nse) {
             return false;
         }
     }
 
     public EntradaDiccionario updateBPMN(String id, String bpmn){
-        EntradaDiccionario res = entradaDiccionarioRepository.findById(id).get();
-        if(res != null){
-            res.setBpmn(bpmn);
-            return entradaDiccionarioRepository.save(res);
+        try {
+            EntradaDiccionario res = entradaDiccionarioRepository.findById(id).get();
+            if (res != null) {
+                res.setBpmn(bpmn);
+                return entradaDiccionarioRepository.save(res);
+            } else {
+                return null;
+            }
         }
-        else{
+        catch (NoSuchElementException nse) {
             return null;
         }
     }
 
     public EntradaDiccionario updateMatrizRECI(String id, String matrizRECI){
-        EntradaDiccionario res = entradaDiccionarioRepository.findById(id).get();
-        if(res != null){
-            res.setMatrizRECI(matrizRECI);
-            return entradaDiccionarioRepository.save(res);
+        try {
+            EntradaDiccionario res = entradaDiccionarioRepository.findById(id).get();
+            if (res != null) {
+                res.setMatrizRECI(matrizRECI);
+                return entradaDiccionarioRepository.save(res);
+            } else {
+                return null;
+            }
         }
-        else{
+        catch (NoSuchElementException nse) {
             return null;
         }
     }
 
     public EntradaDiccionario findById(String id){
-        EntradaDiccionario res = entradaDiccionarioRepository.findById(id).get();
-        if(res != null){
-            return res;
+        try {
+            EntradaDiccionario res = entradaDiccionarioRepository.findById(id).get();
+            if(res != null){
+                return res;
+            }
+            else{
+                return null;
+            }
         }
-        else{
+        catch (NoSuchElementException nse) {
             return null;
         }
     }

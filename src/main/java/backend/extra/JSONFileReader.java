@@ -28,6 +28,7 @@ public class JSONFileReader {
 		}
 		catch(Exception e){
 			System.out.println("Error while reading JSON file.");
+			// Retorno identico
 			return result;
 		}
 	}

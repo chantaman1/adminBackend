@@ -16,7 +16,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Admin" options="-parameters" />
+      <module name="Admin" options="" />
       <module name="GestordeIdeas" options="-parameters" />
     </option>
   </component>
