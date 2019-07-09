@@ -1,19 +1,23 @@
 package backend.models;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class IntegranteOrganigramaTest {
 
-    IntegranteOrganigrama organigrama = new IntegranteOrganigrama("FirstName", "LastName", "Url", "position", 1, 3);
+    IntegranteOrganigrama organigrama;
+
+    @Before
+    public void testing(){
+        organigrama = new IntegranteOrganigrama("FirstName", "LastName", "Url", "position", 1, 3);
+    }
 
     @Test
     public void get_id() {
-        organigrama.set_id("123");
-        String id = organigrama.get_id();
-        Assert.assertEquals("123", id);
+        Assert.assertEquals("123", organigrama.get_id());
     }
 
     @Test
@@ -63,7 +67,7 @@ public class IntegranteOrganigramaTest {
     @Test
     public void setPosition() {
         organigrama.setPosition("Test");
-        Assert.assertEquals("Text", organigrama.getPosition());
+        Assert.assertEquals("Test", organigrama.getPosition());
     }
 
     @Test

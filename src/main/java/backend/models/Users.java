@@ -13,7 +13,7 @@ public class Users {
 	public String creationDate;
 	public String creationTime;
 	public String profilePic;
-	
+
 	public Users(String firstName, String lastName, String email, String password, String role, String creationDate, String creationTime, String profilePic) {
 		this.firstName = firstName;
 		this.lastName = lastName;

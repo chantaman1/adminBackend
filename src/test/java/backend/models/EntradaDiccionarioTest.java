@@ -2,19 +2,24 @@ package backend.models;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class EntradaDiccionarioTest {
 
-    public EntradaDiccionario entradaDiccionario = new EntradaDiccionario("Descripcion Test", 123, "BPMN", "Matriz");
+    EntradaDiccionario entradaDiccionario;
+
+    @Before
+    public void testing(){
+        entradaDiccionario = new EntradaDiccionario("Descripcion Test", 123, "BPMN", "Matriz");
+        entradaDiccionario.set_id("123");
+    }
 
     @Test
     public void get_id() {
-        entradaDiccionario.set_id("123");
-        String id = entradaDiccionario.get_id();
-        Assert.assertEquals("123", id);
+        Assert.assertEquals("123", entradaDiccionario.get_id());
     }
 
     @Test
@@ -25,20 +30,18 @@ public class EntradaDiccionarioTest {
 
     @Test
     public void getDescripcion() {
-        String descripcion = entradaDiccionario.getDescripcion();
-        Assert.assertEquals("Descripcion Test", descripcion);
+        Assert.assertEquals("Descripcion Test", entradaDiccionario.getDescripcion());
     }
 
     @Test
     public void setDescripcion() {
         entradaDiccionario.setDescripcion("Descripcion Test2");
-        Assert.assertEquals("Descripcion Test2", entradaDiccionario.descripcion);
+        Assert.assertEquals("Descripcion Test2", entradaDiccionario.getDescripcion());
     }
 
     @Test
     public void getIndentacion() {
-        int identacion = entradaDiccionario.getIndentacion();
-        Assert.assertEquals(123, identacion);
+        Assert.assertEquals(123, entradaDiccionario.getIndentacion());
     }
 
     @Test
@@ -49,8 +52,7 @@ public class EntradaDiccionarioTest {
 
     @Test
     public void getBpmn() {
-        String bpmn = entradaDiccionario.getBpmn();
-        Assert.assertEquals("BPMN", bpmn);
+        Assert.assertEquals("BPMN", entradaDiccionario.getBpmn());
     }
 
     @Test
@@ -61,8 +63,7 @@ public class EntradaDiccionarioTest {
 
     @Test
     public void getMatrizRECI() {
-        String matriz = entradaDiccionario.getMatrizRECI();
-        Assert.assertEquals("Matriz", matriz);
+        Assert.assertEquals("Matriz", entradaDiccionario.getMatrizRECI());
     }
 
     @Test

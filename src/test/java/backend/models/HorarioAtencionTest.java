@@ -1,6 +1,7 @@
 package backend.models;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -9,14 +10,19 @@ import static org.junit.Assert.*;
 
 public class HorarioAtencionTest {
 
-    LocalDate date = LocalDate.now();
-    HorarioAtencion horarioAtencion = new HorarioAtencion("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo", date);
+    LocalDate date;
+    HorarioAtencion horarioAtencion;
+
+    @Before
+    public void testing(){
+        horarioAtencion = new HorarioAtencion("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo", date);
+        date = LocalDate.now();
+        horarioAtencion.set_id("123");
+    }
 
     @Test
     public void get_id() {
-        horarioAtencion.set_id("123");
-        String id = horarioAtencion.get_id();
-        Assert.assertEquals("123", id);
+        Assert.assertEquals("123", horarioAtencion.get_id());
     }
 
     @Test
@@ -27,8 +33,7 @@ public class HorarioAtencionTest {
 
     @Test
     public void getMonday() {
-        String monday = horarioAtencion.getMonday();
-        Assert.assertEquals("Lunes", monday);
+        Assert.assertEquals("Lunes", horarioAtencion.getMonday());
     }
 
     @Test
@@ -39,8 +44,7 @@ public class HorarioAtencionTest {
 
     @Test
     public void getTuesday() {
-        String tuesday = horarioAtencion.getTuesday();
-        Assert.assertEquals("Martes", tuesday);
+        Assert.assertEquals("Martes", horarioAtencion.getTuesday());
     }
 
     @Test
@@ -51,8 +55,7 @@ public class HorarioAtencionTest {
 
     @Test
     public void getWednesday() {
-        String wednesday = horarioAtencion.getWednesday();
-        Assert.assertEquals("Miercoles", wednesday);
+        Assert.assertEquals("Miercoles", horarioAtencion.getWednesday());
     }
 
     @Test
@@ -62,9 +65,8 @@ public class HorarioAtencionTest {
     }
 
     @Test
-    public void getThursday() {
-        String thursday = horarioAtencion.getThursday();
-        Assert.assertEquals("Jueves", thursday);
+    public void getThursday() { ;
+        Assert.assertEquals("Jueves", horarioAtencion.getThursday());
     }
 
     @Test
@@ -75,8 +77,7 @@ public class HorarioAtencionTest {
 
     @Test
     public void getFriday() {
-        String friday = horarioAtencion.getFriday();
-        Assert.assertEquals("Viernes", friday);
+        Assert.assertEquals("Viernes", horarioAtencion.getFriday());
     }
 
     @Test
@@ -87,8 +88,7 @@ public class HorarioAtencionTest {
 
     @Test
     public void getSaturday() {
-        String saturday = horarioAtencion.getSaturday();
-        Assert.assertEquals("Sabado", saturday);
+        Assert.assertEquals("Sabado", horarioAtencion.getSaturday());
     }
 
     @Test
@@ -99,8 +99,7 @@ public class HorarioAtencionTest {
 
     @Test
     public void getSunday() {
-        String sunday = horarioAtencion.getSunday();
-        Assert.assertEquals("Domingo", sunday);
+        Assert.assertEquals("Domingo", horarioAtencion.getSunday());
     }
 
     @Test
@@ -111,8 +110,7 @@ public class HorarioAtencionTest {
 
     @Test
     public void getCreatedAt() {
-        LocalDate dateTest = horarioAtencion.getCreatedAt();
-        Assert.assertEquals(dateTest, horarioAtencion.getCreatedAt());
+        Assert.assertEquals(date, horarioAtencion.getCreatedAt());
     }
 
     @Test

@@ -4,11 +4,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Servicio {
 	@Id
-	public String _id;
-	public String nombre;
-	public String descripcion;
-	public String compromiso;
-	public String tarifa;
+	private String _id;
+	private String nombre;
+	private String descripcion;
+	private String compromiso;
+	private String tarifa;
 
 	public Servicio(String nombre, String descripcion, String compromiso, String tarifa) {
 		this.nombre = nombre;
