@@ -4,16 +4,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Users {
 	@Id
-	public String _id;
-	public String firstName;
-	public String lastName;
-	public String email;
-	public String password;
-	public String role;
-	public String creationDate;
-	public String creationTime;
-	public boolean loginActive;
-	public boolean activatedAccount;
+	private String _id;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String password;
+	private String role;
+	private String creationDate;
+	private String creationTime;
+	private boolean loginActive;
+	private boolean activatedAccount;
 	
 	public Users(String firstName, String lastName, String email, String password, String role, String creationDate, String creationTime, boolean loginActive, boolean activatedAccount) {
 		this.firstName = firstName;
