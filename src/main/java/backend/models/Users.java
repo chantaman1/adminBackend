@@ -4,18 +4,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Users {
 	@Id
-	private String _id;
-	private String firstName;
-	private String lastName;
-	private String email;
-	private String password;
-	private String role;
-	private String creationDate;
-	private String creationTime;
-	private boolean loginActive;
-	private boolean activatedAccount;
-	
-	public Users(String firstName, String lastName, String email, String password, String role, String creationDate, String creationTime, boolean loginActive, boolean activatedAccount) {
+	public String _id;
+	public String firstName;
+	public String lastName;
+	public String email;
+	public String password;
+	public String role;
+	public String creationDate;
+	public String creationTime;
+	public String profilePic;
+
+	public Users(String firstName, String lastName, String email, String password, String role, String creationDate, String creationTime, String profilePic) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -23,8 +22,7 @@ public class Users {
 		this.role = role;
 		this.creationDate = creationDate;
 		this.creationTime = creationTime;
-		this.loginActive = loginActive;
-		this.activatedAccount = activatedAccount;
+		this.profilePic = profilePic;
 	}
 
 	public String get_id() {
@@ -91,20 +89,11 @@ public class Users {
 		this.creationTime = creationTime;
 	}
 
-	public boolean isLoginActive() {
-		return loginActive;
+	public String getProfilePic() {
+		return profilePic;
 	}
 
-	public void setLoginActive(boolean loginActive) {
-		this.loginActive = loginActive;
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
 	}
-
-	public boolean isActivatedAccount() {
-		return activatedAccount;
-	}
-
-	public void setActivatedAccount(boolean activatedAccount) {
-		this.activatedAccount = activatedAccount;
-	}
-	
 }
