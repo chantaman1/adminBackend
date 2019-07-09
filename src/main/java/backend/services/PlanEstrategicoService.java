@@ -14,63 +14,31 @@ public class PlanEstrategicoService {
 	@Autowired
 	PlanEstrategicoRepository planEstrategicoRepository;
 	
-	public PlanEstrategico create(String vision, String mision, String objetivo, String estrategia, String valor) {
+	public PlanEstrategico create(String name, String description) {
 		LocalDate localDate = LocalDate.now();
-		return planEstrategicoRepository.save(new PlanEstrategico(vision, mision, objetivo, estrategia, valor, localDate));
+		return planEstrategicoRepository.save(new PlanEstrategico(name, description, localDate));
 	}
 	
 	public List<PlanEstrategico> getAll(){
 		return planEstrategicoRepository.findAll();
 	}
 	
-	public PlanEstrategico updateVision(String vision) {
+	public PlanEstrategico updatePlan(String name, String description) {
 		List<PlanEstrategico> planes = planEstrategicoRepository.findAll();
 		if(planes.isEmpty()) {
 			return null;
 		}
-		PlanEstrategico plan = planes.get(0);
-		plan.setVision(vision);
-		return planEstrategicoRepository.save(plan);
+		for(PlanEstrategico plan : planes){
+			if(plan.name.equals(name)){
+				plan.setDescription(description);
+				return planEstrategicoRepository.save(plan);
+			}
+		}
+		return null;
 	}
-	
-	public PlanEstrategico updateMision(String mision) {
-		List<PlanEstrategico> planes = planEstrategicoRepository.findAll();
-		if(planes.isEmpty()) {
-			return null;
-		}
-		PlanEstrategico plan = planes.get(0);
-		plan.setMision(mision);
-		return planEstrategicoRepository.save(plan);
-	}
-	
-	public PlanEstrategico updateObjetivo(String objetivo) {
-		List<PlanEstrategico> planes = planEstrategicoRepository.findAll();
-		if(planes.isEmpty()) {
-			return null;
-		}
-		PlanEstrategico plan = planes.get(0);
-		plan.setObjetivo(objetivo);
-		return planEstrategicoRepository.save(plan);
-	}
-	
-	public PlanEstrategico updateEstrategia(String estrategia) {
-		List<PlanEstrategico> planes = planEstrategicoRepository.findAll();
-		if(planes.isEmpty()) {
-			return null;
-		}
-		PlanEstrategico plan = planes.get(0);
-		plan.setEstrategia(estrategia);
-		return planEstrategicoRepository.save(plan);
-	}
-	
-	public PlanEstrategico updateValor(String valor) {
-		List<PlanEstrategico> planes = planEstrategicoRepository.findAll();
-		if(planes.isEmpty()) {
-			return null;
-		}
-		PlanEstrategico plan = planes.get(0);
-		plan.setValor(valor);
-		return planEstrategicoRepository.save(plan);
+
+	public PlanEstrategico getByName(String name){
+		return planEstrategicoRepository.findPlanEstrategicoByName(name);
 	}
 	
 }

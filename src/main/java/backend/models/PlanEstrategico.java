@@ -6,19 +6,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class PlanEstrategico {
 	@Id
 	public String _id;
-	public String vision;
-	public String mision;
-	public String objetivo;
-	public String estrategia;
-	public String valor;
+	public String name;
+	public String description;
 	public LocalDate createdAt;
 	
-	public PlanEstrategico(String vision, String mision, String objetivo, String estrategia, String valor, LocalDate createdAt) {
-		this.vision = vision;
-		this.mision = mision;
-		this.objetivo = objetivo;
-		this.estrategia = estrategia;
-		this.valor = valor;
+	public PlanEstrategico(String name, String description, LocalDate createdAt) {
+		this.name = name;
+		this.description = description;
 		this.createdAt = createdAt;
 	}
 
@@ -30,44 +24,20 @@ public class PlanEstrategico {
 		this._id = _id;
 	}
 
-	public String getVision() {
-		return vision;
+	public String getName() {
+		return name;
 	}
 
-	public void setVision(String vision) {
-		this.vision = vision;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getMision() {
-		return mision;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setMision(String mision) {
-		this.mision = mision;
-	}
-
-	public String getObjetivo() {
-		return objetivo;
-	}
-
-	public void setObjetivo(String objetivo) {
-		this.objetivo = objetivo;
-	}
-
-	public String getEstrategia() {
-		return estrategia;
-	}
-
-	public void setEstrategia(String estrategia) {
-		this.estrategia = estrategia;
-	}
-
-	public String getValor() {
-		return valor;
-	}
-
-	public void setValor(String valor) {
-		this.valor = valor;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public LocalDate getCreatedAt() {

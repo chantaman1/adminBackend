@@ -37,7 +37,7 @@ public class IntegranteOrganigramaController {
 
     @PostMapping("/organigrama/updateIntegrante")
     public IntegranteOrganigrama updateIntegrante(@RequestParam Map<String, Object> jsonData){
-        String firtName = jsonData.get("firtName").toString();
+        String firtName = jsonData.get("fisrtName").toString();
         String lastName = jsonData.get("lastName").toString();
         String photoUrl = jsonData.get("photoUrl").toString();
         String position = jsonData.get("position").toString();
