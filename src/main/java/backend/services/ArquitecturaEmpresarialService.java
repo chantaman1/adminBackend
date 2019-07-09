@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Component
 public class ArquitecturaEmpresarialService {
@@ -21,13 +22,18 @@ public class ArquitecturaEmpresarialService {
     }
 
     public ArquitecturaEmpresarial update(String id, String titulo, String descripcion){
-        ArquitecturaEmpresarial res = arquitecturaEmpresarialRepository.findById(id).get();
-        if(res != null){
-            res.setTitulo(titulo);
-            res.setDescripcion(descripcion);
-            return arquitecturaEmpresarialRepository.save(res);
+        try {
+            ArquitecturaEmpresarial res = arquitecturaEmpresarialRepository.findById(id).get();
+            if(res != null){
+                res.setTitulo(titulo);
+                res.setDescripcion(descripcion);
+                return arquitecturaEmpresarialRepository.save(res);
+            }
+            else{
+                return null;
+            }
         }
-        else{
+        catch (NoSuchElementException nse) {
             return null;
         }
     }
