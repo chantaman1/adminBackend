@@ -23,7 +23,7 @@ public class IntegranteOrganigramaService {
     public IntegranteOrganigrama findByName(String firstName, String lastName){
         List<IntegranteOrganigrama> res = integranteOrganigramaRepository.getByFirstName(firstName);
         for(int i=0; i<res.size();i++){
-           if (res.get(i).lastName.equalsIgnoreCase(lastName)){
+           if (res.get(i).getLastName().equalsIgnoreCase(lastName)){
                return res.get(i);
            }
         }
