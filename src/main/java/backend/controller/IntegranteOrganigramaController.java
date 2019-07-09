@@ -44,12 +44,12 @@ public class IntegranteOrganigramaController {
         int parent = Integer.parseInt(jsonData.get("parent").toString());
         int child = Integer.parseInt(jsonData.get("child").toString());
         IntegranteOrganigrama res = integranteOrganigramaService.findByName(firtName, lastName);
-        res.firstName = firtName;
-        res.lastName = lastName;
-        res.photoUrl = photoUrl;
-        res.position = position;
-        res.parent = parent;
-        res.child = child;
+        res.setFirstName(firtName);
+        res.setLastName(lastName);
+        res.setPhotoUrl(photoUrl);
+        res.setPosition(position);
+        res.setParent(parent);
+        res.setChild(child);
         return integranteOrganigramaService.update(res);
     }
 

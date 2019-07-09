@@ -8,15 +8,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class HorarioAtencion {
 	@Id
-	public String _id;
-	public String monday;
-	public String tuesday;
-	public String wednesday;
-	public String thursday;
-	public String friday;
-	public String saturday;
-	public String sunday;
-	public LocalDate createdAt;
+	private String _id;
+	private String monday;
+	private String tuesday;
+	private String wednesday;
+	private String thursday;
+	private String friday;
+	private String saturday;
+	private String sunday;
+	private LocalDate createdAt;
 
 	public HorarioAtencion(String monday, String tuesday, String wednesday, String thursday, String friday, String saturday, String sunday, LocalDate createdAt) {
 		this.monday = monday;

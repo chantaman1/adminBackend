@@ -6,13 +6,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class IntegranteOrganigrama {
 	@Id
-	public String _id;
-	public String firstName;
-	public String lastName;
-	public String photoUrl;
-	public String position;
-	public int parent;
-	public int child;
+	private String _id;
+	private String firstName;
+	private String lastName;
+	private String photoUrl;
+	private String position;
+	private int parent;
+	private int child;
 
 	public IntegranteOrganigrama(String firstName, String lastName, String photoUrl, String position, int parent, int child) {
 		this.firstName = firstName;
