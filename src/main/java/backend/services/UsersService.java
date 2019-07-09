@@ -16,12 +16,12 @@ public class UsersService{
   @Autowired
   private UsersRepository userRepository;
 
-  public Users create(String firstName, String lastName, String email, String password, String role) {
+  public Users create(String firstName, String lastName, String email, String password, String role, String urlPic) {
 	  LocalTime localTime = LocalTime.now();
 	  LocalDate localDate = LocalDate.now();
 	  String date = localDate.format(DateTimeFormatter.ofPattern("EEEE dd, MM, yyyy"));
 	  String time = localTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-	  return userRepository.save(new Users(firstName, lastName, email, password, role, date, time, false, true));
+	  return userRepository.save(new Users(firstName, lastName, email, password, role, date, time, urlPic));
   }
   
   public List<Users> getAll(){
@@ -41,28 +41,13 @@ public class UsersService{
 	  user.setPassword(password);
 	  return userRepository.save(user);
   }
-  
-  public Users updateSession(String email) {
-	  Users user = userRepository.findByEmail(email);
-	  boolean status = user.isLoginActive();
-	  if(status == true) {
-		  user.setLoginActive(false);
-	  }
-	  else {
-		  user.setLoginActive(true);
-	  }
-	  return userRepository.save(user);
-  }
-  
-  public Users updateAccountStatus(String email) {
-	  Users user = userRepository.findByEmail(email);
-	  boolean status = user.isActivatedAccount();
-	  if(status == true) {
-		  user.setActivatedAccount(false);
-	  }
-	  else {
-		  user.setActivatedAccount(true);
-	  }
-	  return userRepository.save(user);
+
+  public Users updateProfilePic(String email, String pic){
+  	Users user = userRepository.findByEmail(email);
+  	if(user != null){
+  		user.setProfilePic(pic);
+  		return userRepository.save(user);
+	}
+  	return null;
   }
 }

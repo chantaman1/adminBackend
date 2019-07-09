@@ -12,10 +12,9 @@ public class Users {
 	public String role;
 	public String creationDate;
 	public String creationTime;
-	public boolean loginActive;
-	public boolean activatedAccount;
+	public String profilePic;
 	
-	public Users(String firstName, String lastName, String email, String password, String role, String creationDate, String creationTime, boolean loginActive, boolean activatedAccount) {
+	public Users(String firstName, String lastName, String email, String password, String role, String creationDate, String creationTime, String profilePic) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -23,8 +22,7 @@ public class Users {
 		this.role = role;
 		this.creationDate = creationDate;
 		this.creationTime = creationTime;
-		this.loginActive = loginActive;
-		this.activatedAccount = activatedAccount;
+		this.profilePic = profilePic;
 	}
 
 	public String get_id() {
@@ -91,20 +89,11 @@ public class Users {
 		this.creationTime = creationTime;
 	}
 
-	public boolean isLoginActive() {
-		return loginActive;
+	public String getProfilePic() {
+		return profilePic;
 	}
 
-	public void setLoginActive(boolean loginActive) {
-		this.loginActive = loginActive;
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
 	}
-
-	public boolean isActivatedAccount() {
-		return activatedAccount;
-	}
-
-	public void setActivatedAccount(boolean activatedAccount) {
-		this.activatedAccount = activatedAccount;
-	}
-	
 }
