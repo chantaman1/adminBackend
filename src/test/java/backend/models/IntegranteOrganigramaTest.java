@@ -13,6 +13,7 @@ public class IntegranteOrganigramaTest {
     @Before
     public void testing(){
         organigrama = new IntegranteOrganigrama("FirstName", "LastName", "Url", "position", 1, 3);
+        organigrama.set_id("123");
     }
 
     @Test

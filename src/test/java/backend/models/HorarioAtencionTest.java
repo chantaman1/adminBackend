@@ -15,8 +15,8 @@ public class HorarioAtencionTest {
 
     @Before
     public void testing(){
-        horarioAtencion = new HorarioAtencion("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo", date);
         date = LocalDate.now();
+        horarioAtencion = new HorarioAtencion("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo", date);
         horarioAtencion.set_id("123");
     }
 
