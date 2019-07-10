@@ -5,10 +5,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class PlanEstrategico {
 	@Id
-	public String _id;
-	public String name;
-	public String description;
-	public LocalDate createdAt;
+	private String _id;
+	private String name;
+	private String description;
+	private LocalDate createdAt;
 	
 	public PlanEstrategico(String name, String description, LocalDate createdAt) {
 		this.name = name;

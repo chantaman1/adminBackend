@@ -29,7 +29,7 @@ public class PlanEstrategicoService {
 			return null;
 		}
 		for(PlanEstrategico plan : planes){
-			if(plan.name.equals(name)){
+			if(plan.getName().equals(name)){
 				plan.setDescription(description);
 				return planEstrategicoRepository.save(plan);
 			}

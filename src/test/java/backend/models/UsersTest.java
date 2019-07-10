@@ -11,7 +11,7 @@ public class UsersTest {
 
     @Before
     public void testing(){
-        users = new Users("FirstName", "LastName", "Correo", "Contrasena", "Role", "Creacion", "Creacion2", true, false);
+        users = new Users("FirstName", "LastName", "Correo", "Contrasena", "Role", "Creacion", "Creacion2", "TestPic");
         users.set_id("123");
     }
 
@@ -104,24 +104,13 @@ public class UsersTest {
     }
 
     @Test
-    public void isLoginActive() {
-        assertTrue(users.isLoginActive());
+    public void getProfilePicTest() {
+        assertEquals("TestPic", users.getProfilePic());
     }
 
     @Test
-    public void setLoginActive() {
-        users.setLoginActive(false);
-        assertEquals(false, users.isLoginActive());
-    }
-
-    @Test
-    public void isActivatedAccount() {
-        assertEquals(false, users.isActivatedAccount());
-    }
-
-    @Test
-    public void setActivatedAccount() {
-        users.setActivatedAccount(true);
-        assertTrue(users.isActivatedAccount());
+    public void setProfilePicTest() {
+        users.setProfilePic("Test");
+        assertEquals("Test", users.getProfilePic());
     }
 }
