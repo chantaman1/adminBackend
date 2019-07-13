@@ -1,0 +1,4 @@
+backend\models\EntradaDiccionarioTest.class
+backend\BackendApplicationTests.class
+backend\models\PlanEstrategicoTest.class
+backend\models\ArquitecturaEmpresarialTest.class

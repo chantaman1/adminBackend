@@ -7,20 +7,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class IntegranteOrganigrama {
 	@Id
 	private String _id;
-	private String firstName;
-	private String lastName;
-	private String photoUrl;
-	private String position;
 	private int parent;
-	private int child;
+	private String text;
+	private String title;
+	private String email;
+	private String img;
 
-	public IntegranteOrganigrama(String firstName, String lastName, String photoUrl, String position, int parent, int child) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.photoUrl = photoUrl;
-		this.position = position;
+	public IntegranteOrganigrama(int parent, String text, String title, String email, String img) {
 		this.parent = parent;
-		this.child = child;
+		this.text = text;
+		this.title = title;
+		this.email = email;
+		this.img = img;
 	}
 
 	public String get_id() {
@@ -31,38 +29,6 @@ public class IntegranteOrganigrama {
 		this._id = _id;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getPhotoUrl() {
-		return photoUrl;
-	}
-
-	public void setPhotoUrl(String photoUrl) {
-		this.photoUrl = photoUrl;
-	}
-
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
-	}
-
 	public int getParent() {
 		return parent;
 	}
@@ -71,11 +37,35 @@ public class IntegranteOrganigrama {
 		this.parent = parent;
 	}
 
-	public int getChild() {
-		return child;
+	public String getText() {
+		return text;
 	}
 
-	public void setChild(int child) {
-		this.child = child;
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 }
