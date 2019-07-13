@@ -24,107 +24,96 @@ public class IntegranteOrganigramaServiceTest {
 
     @Test
     public void createTest() {
-        String firstName = "Nombre test";
-        String lastName = "Apellido test";
-        String photoUrl = "URL test";
-        String position = "Position test";
+        String text = "Text test";
+        String title = "Title test";
+        String email = "Email test";
+        String img = "Img test";
         int parent = 0;
-        int child = 1;
 
-        Mockito.when(integranteOrganigramaRepository.save(Mockito.any(IntegranteOrganigrama.class))).thenReturn(new IntegranteOrganigrama(firstName, lastName, photoUrl, position, parent, child));
+        Mockito.when(integranteOrganigramaRepository.save(Mockito.any(IntegranteOrganigrama.class))).thenReturn(new IntegranteOrganigrama(parent, text, title, email, img));
 
-        IntegranteOrganigrama integranteOrganigrama = integranteOrganigramaService.create(firstName, lastName, photoUrl, position, parent, child);
+        IntegranteOrganigrama integranteOrganigrama = integranteOrganigramaService.create(parent, text, title, email, img);
 
-        Assert.assertEquals(integranteOrganigrama.getFirstName(), firstName);
-        Assert.assertEquals(integranteOrganigrama.getLastName(), lastName);
-        Assert.assertEquals(integranteOrganigrama.getPhotoUrl(), photoUrl);
-        Assert.assertEquals(integranteOrganigrama.getPosition(), position);
+        Assert.assertEquals(integranteOrganigrama.getText(), text);
+        Assert.assertEquals(integranteOrganigrama.getTitle(), title);
+        Assert.assertEquals(integranteOrganigrama.getEmail(), email);
+        Assert.assertEquals(integranteOrganigrama.getImg(), img);
         Assert.assertEquals(integranteOrganigrama.getParent(), parent);
-        Assert.assertEquals(integranteOrganigrama.getChild(), child);
     }
 
     @Test
-    public void findByNameTestIfFound() {
-        String firstName = "Nombre test";
-        String lastName = "Apellido test";
-        String photoUrl = "URL test";
-        String position = "Position test";
+    public void findByTitleTestIfFound() {
+        String text = "Text test";
+        String title = "Title test";
+        String email = "Email test";
+        String img = "Img test";
         int parent = 0;
-        int child = 1;
-        IntegranteOrganigrama integranteTest = new IntegranteOrganigrama(firstName, lastName, photoUrl, position, parent, child);
+        IntegranteOrganigrama integranteTest = new IntegranteOrganigrama(parent, text, title, email, img);
         List<IntegranteOrganigrama> testList = new ArrayList<>();
         testList.add(integranteTest);
 
-        Mockito.when(integranteOrganigramaRepository.getByFirstName(Mockito.any(String.class))).thenReturn(testList);
+        Mockito.when(integranteOrganigramaRepository.getIntegranteOrganigramaByTitle(Mockito.any(String.class))).thenReturn(testList);
 
-        IntegranteOrganigrama integranteOrganigrama = integranteOrganigramaService.findByName(firstName, lastName);
+        List<IntegranteOrganigrama> integranteOrganigrama = integranteOrganigramaService.findByTitle(title);
 
-        Assert.assertEquals(integranteOrganigrama.getFirstName(), firstName);
-        Assert.assertEquals(integranteOrganigrama.getLastName(), lastName);
+        Assert.assertEquals(integranteOrganigrama.get(0).getTitle(), title);
     }
 
     @Test
-    public void findByNameTestIfNotFound() {
-        String firstName = "Nombre test";
-        String lastName = "Apellido test";
+    public void findByTitleTestIfNotFound() {
+        String title = "Title test";
         List<IntegranteOrganigrama> testList = new ArrayList<>();
 
-        Mockito.when(integranteOrganigramaRepository.getByFirstName(Mockito.any(String.class))).thenReturn(testList);
+        Mockito.when(integranteOrganigramaRepository.getIntegranteOrganigramaByTitle(Mockito.any(String.class))).thenReturn(testList);
 
-        IntegranteOrganigrama integranteOrganigrama = integranteOrganigramaService.findByName(firstName, lastName);
+        List<IntegranteOrganigrama> integranteOrganigrama = integranteOrganigramaService.findByTitle(title);
 
-        Assert.assertNull(integranteOrganigrama);
+        Assert.assertEquals(0, integranteOrganigrama.size());
     }
 
     @Test
-    public void findByPosition() {
-        String firstName = "Nombre test";
-        String lastName = "Apellido test";
-        String photoUrl = "URL test";
-        String position = "Position test";
+    public void findByEmailTestIfFound() {
+        String text = "Text test";
+        String title = "Title test";
+        String email = "Email test";
+        String img = "Img test";
         int parent = 0;
-        int child = 1;
-        IntegranteOrganigrama integranteTest = new IntegranteOrganigrama(firstName, lastName, photoUrl, position, parent, child);
-        List<IntegranteOrganigrama> testList = new ArrayList<>();
-        testList.add(integranteTest);
+        IntegranteOrganigrama integranteTest = new IntegranteOrganigrama(parent, text, title, email, img);
 
-        Mockito.when(integranteOrganigramaRepository.getByPosition(Mockito.any(String.class))).thenReturn(testList);
+        Mockito.when(integranteOrganigramaRepository.getIntegranteOrganigramaByEmail(Mockito.any(String.class))).thenReturn(integranteTest);
 
-        List<IntegranteOrganigrama> integranteOrganigrama = integranteOrganigramaService.findByPosition(position);
+        IntegranteOrganigrama integranteOrganigrama = integranteOrganigramaService.findByEmail(img);
 
-        Assert.assertEquals(integranteOrganigrama.get(0).getPosition(), position);
+        Assert.assertEquals(integranteOrganigrama.getEmail(), email);
     }
 
     @Test
-    public void findByPositionTestIfNotFound() {
-        String position = "Position test";
-        List<IntegranteOrganigrama> testList = new ArrayList<>();
+    public void findByEmailTestIfNotFound() {
+        String email = "Email test";
 
-        Mockito.when(integranteOrganigramaRepository.getByPosition(Mockito.any(String.class))).thenReturn(testList);
+        Mockito.when(integranteOrganigramaRepository.getIntegranteOrganigramaByEmail(Mockito.any(String.class))).thenReturn(null);
 
-        List<IntegranteOrganigrama> integranteOrganigrama = integranteOrganigramaService.findByPosition(position);
+        IntegranteOrganigrama integranteOrganigrama = integranteOrganigramaService.findByEmail(email);
 
         Assert.assertNull(integranteOrganigrama);
     }
 
     @Test
     public void update() {
-        String firstName = "Nombre test";
-        String lastName = "Apellido test";
-        String photoUrl = "URL test";
-        String position = "Position test";
+        String text = "Text test";
+        String title = "Title test";
+        String email = "Email test";
+        String img = "Img test";
         int parent = 0;
-        int child = 1;
 
-        Mockito.when(integranteOrganigramaRepository.save(Mockito.any(IntegranteOrganigrama.class))).thenReturn(new IntegranteOrganigrama(firstName, lastName, photoUrl, position, parent, child));
+        Mockito.when(integranteOrganigramaRepository.save(Mockito.any(IntegranteOrganigrama.class))).thenReturn(new IntegranteOrganigrama(parent, text, title, email, img));
 
-        IntegranteOrganigrama integranteOrganigrama = integranteOrganigramaService.update(new IntegranteOrganigrama(firstName, lastName, photoUrl, position, parent, child));
+        IntegranteOrganigrama integranteOrganigrama = integranteOrganigramaService.update(new IntegranteOrganigrama(parent, text, title, email, img));
 
-        Assert.assertEquals(integranteOrganigrama.getFirstName(), firstName);
-        Assert.assertEquals(integranteOrganigrama.getLastName(), lastName);
-        Assert.assertEquals(integranteOrganigrama.getPhotoUrl(), photoUrl);
-        Assert.assertEquals(integranteOrganigrama.getPosition(), position);
+        Assert.assertEquals(integranteOrganigrama.getText(), text);
+        Assert.assertEquals(integranteOrganigrama.getTitle(), title);
+        Assert.assertEquals(integranteOrganigrama.getEmail(), email);
+        Assert.assertEquals(integranteOrganigrama.getImg(), img);
         Assert.assertEquals(integranteOrganigrama.getParent(), parent);
-        Assert.assertEquals(integranteOrganigrama.getChild(), child);
     }
 }

@@ -12,7 +12,7 @@ public class IntegranteOrganigramaTest {
 
     @Before
     public void testing(){
-        organigrama = new IntegranteOrganigrama("FirstName", "LastName", "Url", "position", 1, 3);
+        organigrama = new IntegranteOrganigrama(1,"Test Text", "Test Title", "Email", "Test Image");
         organigrama.set_id("123");
     }
 
@@ -28,47 +28,47 @@ public class IntegranteOrganigramaTest {
     }
 
     @Test
-    public void getFirstName() {
-        Assert.assertEquals("FirstName", organigrama.getFirstName());
+    public void getTextTest() {
+        Assert.assertEquals("Test Text", organigrama.getText());
     }
 
     @Test
-    public void setFirstName() {
-        organigrama.setFirstName("Test");
-        Assert.assertEquals("Test", organigrama.getFirstName());
+    public void setTextTest() {
+        organigrama.setText("Test");
+        Assert.assertEquals("Test", organigrama.getText());
     }
 
     @Test
-    public void getLastName() {
-        Assert.assertEquals("LastName", organigrama.getLastName());
+    public void getTitleTest() {
+        Assert.assertEquals("Test Title", organigrama.getTitle());
     }
 
     @Test
-    public void setLastName() {
-        organigrama.setLastName("Test");
-        Assert.assertEquals("Test", organigrama.getLastName());
+    public void setTitleTest() {
+        organigrama.setTitle("Test");
+        Assert.assertEquals("Test", organigrama.getTitle());
     }
 
     @Test
-    public void getPhotoUrl() {
-        Assert.assertEquals("Url", organigrama.getPhotoUrl());
+    public void getEmailTest() {
+        Assert.assertEquals("Email", organigrama.getEmail());
     }
 
     @Test
-    public void setPhotoUrl() {
-        organigrama.setPhotoUrl("www.test.cl");
-        Assert.assertEquals("www.test.cl", organigrama.getPhotoUrl());
+    public void setEmailTest() {
+        organigrama.setEmail("example@test.cl");
+        Assert.assertEquals("example@test.cl", organigrama.getEmail());
     }
 
     @Test
-    public void getPosition() {
-        Assert.assertEquals("position", organigrama.getPosition());
+    public void getImgTest() {
+        Assert.assertEquals("Test Image", organigrama.getImg());
     }
 
     @Test
-    public void setPosition() {
-        organigrama.setPosition("Test");
-        Assert.assertEquals("Test", organigrama.getPosition());
+    public void setImgTest() {
+        organigrama.setImg("Test");
+        Assert.assertEquals("Test", organigrama.getImg());
     }
 
     @Test
@@ -80,16 +80,5 @@ public class IntegranteOrganigramaTest {
     public void setParent() {
         organigrama.setParent(123);
         Assert.assertEquals(123, organigrama.getParent());
-    }
-
-    @Test
-    public void getChild() {
-        Assert.assertEquals(3, organigrama.getChild());
-    }
-
-    @Test
-    public void setChild() {
-        organigrama.setChild(123);
-        Assert.assertEquals(123, organigrama.getChild());
     }
 }
