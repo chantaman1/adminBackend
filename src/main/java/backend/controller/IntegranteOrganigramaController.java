@@ -63,6 +63,11 @@ public class IntegranteOrganigramaController {
         }
     }
 
+    @GetMapping("/organigrama/getAll")
+    public List<IntegranteOrganigrama> findAll(){
+      return integranteOrganigramaService.findAll();
+    }
+
     @GetMapping("/organigrama/getIntegrante/{email}/")
     public IntegranteOrganigrama findByName(@RequestParam String email){
         return integranteOrganigramaService.findByEmail(email);
