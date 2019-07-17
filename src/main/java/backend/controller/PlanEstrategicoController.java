@@ -5,11 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import backend.extra.ApiKey;
 import backend.models.PlanEstrategico;
@@ -88,7 +84,7 @@ public class PlanEstrategicoController {
 			String name = jsonData.get("name").toString();
 			String description = jsonData.get("description").toString();
 			if(name == null) {
-				map.put("status", "404");
+				map.put("status", 404);
 				map.put("message", "NAME NOT GIVEN.");
 				map.put("result", false);
 				return map;
@@ -107,11 +103,46 @@ public class PlanEstrategicoController {
 			}
 		}
 		else {
-			map.put("status", "400");
+			map.put("status", 400);
 			map.put("message", "WRONG API KEY.");
 			map.put("result", false);
 			return map;
 		}
 	}
-
+	@DeleteMapping("/planEstrategico/deletePlan")
+	@ResponseBody
+	public HashMap<String, Object> deletePlan(@RequestBody Map<String, Object> jsonData, @RequestParam String api_key){
+		HashMap<String, Object> map = new HashMap<>();
+		if(api_key.equals(p_api_key)) {
+			String name = jsonData.get("name").toString();
+			if(name != null){
+				PlanEstrategico plan = planEstrategicoService.getByName(name);
+				if(plan != null){
+					planEstrategicoService.deletePlan(name);
+					map.put("status", 200);
+					map.put("message", "OK");
+					map.put("result", true);
+					return map;
+				}
+				else{
+					map.put("status", 404);
+					map.put("message", "THIS PLAN DOES NOT EXIST.");
+					map.put("result", false);
+					return map;
+				}
+			}
+			else{
+				map.put("status", 404);
+				map.put("message", "NAME NOT GIVEN.");
+				map.put("result", false);
+				return map;
+			}
+		}
+		else {
+			map.put("status", 400);
+			map.put("message", "WRONG API KEY.");
+			map.put("result", false);
+			return map;
+		}
+	}
 }

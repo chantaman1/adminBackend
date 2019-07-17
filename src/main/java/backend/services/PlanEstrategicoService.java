@@ -18,6 +18,11 @@ public class PlanEstrategicoService {
 		LocalDate localDate = LocalDate.now();
 		return planEstrategicoRepository.save(new PlanEstrategico(name, description, localDate));
 	}
+
+	public void deletePlan(String name){
+		PlanEstrategico plan = planEstrategicoRepository.findPlanEstrategicoByName(name);
+		planEstrategicoRepository.delete(plan);
+	}
 	
 	public List<PlanEstrategico> getAll(){
 		return planEstrategicoRepository.findAll();
