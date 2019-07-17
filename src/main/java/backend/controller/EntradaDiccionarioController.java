@@ -26,36 +26,36 @@ public class EntradaDiccionarioController {
 
     @PostMapping("/diccionario/create")
     @ResponseBody
-    public HashMap<String, Object> create(@RequestParam("fileBPMN") MultipartFile fileBPMN, @RequestBody Map<String, Object> jsonData){
+    public HashMap<String, Object> create(@RequestBody Map<String, Object> jsonData){
         HashMap<String, Object> map = new HashMap<>();
         String titulo = jsonData.get("titulo").toString();
         int indentacion = Integer.parseInt(jsonData.get("indentacion").toString());
         String tituloEmp = jsonData.get("tituloEmpresarial").toString();
         ArquitecturaEmpresarial arquitectura = arquitecturaEmpresarialService.getByTitulo(tituloEmp);
-        if(titulo != null && fileBPMN != null){
-            UploadFileResponse resultBpmn = fileController.uploadFile(fileBPMN);
+        if(titulo != null){
+            // UploadFileResponse resultBpmn = fileController.uploadFile(fileBPMN);
             //UploadFileResponse resultMatrix = fileController.uploadFile(fileMatrix);
-            if(resultBpmn != null){
-                EntradaDiccionario result = entradaDiccionarioService.create(titulo, arquitectura.get_id(), indentacion, resultBpmn.getFileDownloadUri(), "");
-                if(result != null){
-                    map.put("status", 201);
-                    map.put("message", "OK");
-                    map.put("result", true);
-                    return map;
-                }
-                else{
-                    map.put("status", 400);
-                    map.put("message", "Could not save the object.");
-                    map.put("result", false);
-                    return map;
-                }
+            // if(resultBpmn != null){
+            EntradaDiccionario result = entradaDiccionarioService.create(titulo, arquitectura.get_id(), indentacion, "", "");
+            if(result != null){
+                map.put("status", 201);
+                map.put("message", "OK");
+                map.put("result", true);
+                return map;
             }
             else{
                 map.put("status", 400);
-                map.put("message", "Could not upload one or more files.");
+                map.put("message", "Could not save the object.");
                 map.put("result", false);
                 return map;
             }
+            // }
+            // else{
+            //     map.put("status", 400);
+            //     map.put("message", "Could not upload one or more files.");
+            //     map.put("result", false);
+            //     return map;
+            // }
         }
         else{
             map.put("Status", 400);
@@ -67,8 +67,8 @@ public class EntradaDiccionarioController {
 
     @PostMapping("/diccionario/updatebpmn")
     @ResponseBody
-    public HashMap<String, Object> updateBpmn(@RequestParam("fileBPMN") MultipartFile fileBPMN, @RequestBody Map<String, Object> jsonData){
-        String id = jsonData.get("id").toString();
+    public HashMap<String, Object> updateBpmn(@RequestParam("fileBPMN") MultipartFile fileBPMN, @RequestParam String id){
+        // String id = jsonData.get("id").toString();
         HashMap<String, Object> map = new HashMap<>();
         boolean res = entradaDiccionarioService.checkEntradaDiccionario(id);
         if(res){
