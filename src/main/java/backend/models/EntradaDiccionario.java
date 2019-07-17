@@ -7,17 +7,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class EntradaDiccionario {
     @Id
     public String _id;
-    public String descripcion;
-    public int indentacion;
-    public String bpmn;
-    public String matrizRECI;
+    private String idArquitecturaEmpresarial;
+    private String titulo;
+    private int indentacion;
+    private String bpmn;
+    private String matrizRECI;
 
     public EntradaDiccionario(){
 
     }
 
-    public EntradaDiccionario(String descripcion, int indentacion, String bpmn, String matrizRECI){
-        this.descripcion = descripcion;
+    public EntradaDiccionario(String titulo, String idArquitecturaEmpresarial, int indentacion, String bpmn, String matrizRECI){
+        this.titulo = titulo;
+        this.idArquitecturaEmpresarial = idArquitecturaEmpresarial;
         this.indentacion = indentacion;
         this.bpmn = bpmn;
         this.matrizRECI = matrizRECI;
@@ -31,12 +33,20 @@ public class EntradaDiccionario {
         this._id = _id;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getIdArquitecturaEmpresarial() {
+        return idArquitecturaEmpresarial;
+    }
+
+    public void setIdArquitecturaEmpresarial(String idArquitecturaEmpresarial) {
+        this.idArquitecturaEmpresarial = idArquitecturaEmpresarial;
     }
 
     public int getIndentacion() {

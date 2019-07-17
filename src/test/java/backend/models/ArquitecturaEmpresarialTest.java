@@ -13,7 +13,6 @@ public class ArquitecturaEmpresarialTest {
         empresarial =  new ArquitecturaEmpresarial();
         empresarial.set_id("123");
         empresarial.setTitulo("Titulo Test");
-        empresarial.setDescripcion("Descripcion Test");
     }
 
     @Test
@@ -26,8 +25,4 @@ public class ArquitecturaEmpresarialTest {
         Assert.assertEquals("Titulo Test", empresarial.getTitulo());
     }
 
-    @Test
-    public void getDescripcionTest(){
-        Assert.assertEquals("Descripcion Test", empresarial.getDescripcion());
-    }
 }

@@ -24,35 +24,38 @@ public class EntradaDiccionarioServiceTest {
     @Test
     public void createTest() {
         String descripcion = "Descripcion test";
+        String idArquitectura = "123123";
         int indentacion = 1;
         String bpmn = "BPMN test";
         String reci = "Matriz test";
 
-        Mockito.when(entradaDiccionarioRepository.save(Mockito.any(EntradaDiccionario.class))).thenReturn(new EntradaDiccionario(descripcion, indentacion, bpmn, reci));
+        Mockito.when(entradaDiccionarioRepository.save(Mockito.any(EntradaDiccionario.class))).thenReturn(new EntradaDiccionario(descripcion, idArquitectura, indentacion, bpmn, reci));
 
-        EntradaDiccionario entradaDiccionario = entradaDiccionarioService.create(descripcion, indentacion, bpmn, reci);
+        EntradaDiccionario entradaDiccionario = entradaDiccionarioService.create(descripcion, idArquitectura, indentacion, bpmn, reci);
 
-        Assert.assertEquals(entradaDiccionario.getDescripcion(), descripcion);
+        Assert.assertEquals(entradaDiccionario.getTitulo(), descripcion);
         Assert.assertEquals(entradaDiccionario.getIndentacion(), indentacion);
         Assert.assertEquals(entradaDiccionario.getBpmn(), bpmn);
         Assert.assertEquals(entradaDiccionario.getMatrizRECI(), reci);
+        Assert.assertEquals(entradaDiccionario.getIdArquitecturaEmpresarial(), idArquitectura);
     }
 
     @Test
     public void updateEntradaDiccionarioTestIfFound() {
         String descripcion = "Descripcion test";
+        String idArquitectura = "123123";
         int indentacion = 1;
         String bpmn = "BPMN test";
         String reci = "Matriz test";
         String id = "1";
-        EntradaDiccionario entradaDiccionarioTest = new EntradaDiccionario(descripcion, indentacion, bpmn, reci);
+        EntradaDiccionario entradaDiccionarioTest = new EntradaDiccionario(descripcion, idArquitectura, indentacion, bpmn, reci);
 
         Mockito.when(entradaDiccionarioRepository.findById(id)).thenReturn(java.util.Optional.ofNullable(entradaDiccionarioTest));
-        Mockito.when(entradaDiccionarioRepository.save(Mockito.any(EntradaDiccionario.class))).thenReturn(new EntradaDiccionario(descripcion, indentacion, bpmn, reci));
+        Mockito.when(entradaDiccionarioRepository.save(Mockito.any(EntradaDiccionario.class))).thenReturn(new EntradaDiccionario(descripcion, idArquitectura, indentacion, bpmn, reci));
 
         EntradaDiccionario entradaDiccionario = entradaDiccionarioService.updateEntradaDiccionario(id, descripcion, indentacion);
 
-        Assert.assertEquals(entradaDiccionario.getDescripcion(), descripcion);
+        Assert.assertEquals(entradaDiccionario.getTitulo(), descripcion);
         Assert.assertEquals(entradaDiccionario.getIndentacion(), indentacion);
     }
 
@@ -92,14 +95,15 @@ public class EntradaDiccionarioServiceTest {
     @Test
     public void updateBPMNTestIfFound() {
         String descripcion = "Descripcion test";
+        String idArquitectura = "123123";
         int indentacion = 1;
         String bpmn = "BPMN test";
         String reci = "Matriz test";
         String id = "1";
-        EntradaDiccionario entradaDiccionarioTest = new EntradaDiccionario(descripcion, indentacion, bpmn, reci);
+        EntradaDiccionario entradaDiccionarioTest = new EntradaDiccionario(descripcion, idArquitectura, indentacion, bpmn, reci);
 
         Mockito.when(entradaDiccionarioRepository.findById(id)).thenReturn(java.util.Optional.ofNullable(entradaDiccionarioTest));
-        Mockito.when(entradaDiccionarioRepository.save(Mockito.any(EntradaDiccionario.class))).thenReturn(new EntradaDiccionario(descripcion, indentacion, bpmn, reci));
+        Mockito.when(entradaDiccionarioRepository.save(Mockito.any(EntradaDiccionario.class))).thenReturn(new EntradaDiccionario(descripcion, idArquitectura, indentacion, bpmn, reci));
 
         EntradaDiccionario entradaDiccionario = entradaDiccionarioService.updateBPMN(id, bpmn);
 
@@ -121,14 +125,15 @@ public class EntradaDiccionarioServiceTest {
     @Test
     public void updateMatrizRECITestIfFound() {
         String descripcion = "Descripcion test";
+        String idArquitectura = "123123";
         int indentacion = 1;
         String bpmn = "BPMN test";
         String reci = "Matriz test";
         String id = "1";
-        EntradaDiccionario entradaDiccionarioTest = new EntradaDiccionario(descripcion, indentacion, bpmn, reci);
+        EntradaDiccionario entradaDiccionarioTest = new EntradaDiccionario(descripcion, idArquitectura, indentacion, bpmn, reci);
 
         Mockito.when(entradaDiccionarioRepository.findById(id)).thenReturn(java.util.Optional.ofNullable(entradaDiccionarioTest));
-        Mockito.when(entradaDiccionarioRepository.save(Mockito.any(EntradaDiccionario.class))).thenReturn(new EntradaDiccionario(descripcion, indentacion, bpmn, reci));
+        Mockito.when(entradaDiccionarioRepository.save(Mockito.any(EntradaDiccionario.class))).thenReturn(new EntradaDiccionario(descripcion, idArquitectura, indentacion, bpmn, reci));
 
         EntradaDiccionario entradaDiccionario = entradaDiccionarioService.updateMatrizRECI(id, reci);
 

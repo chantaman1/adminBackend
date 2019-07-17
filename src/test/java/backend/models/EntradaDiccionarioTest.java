@@ -13,7 +13,7 @@ public class EntradaDiccionarioTest {
 
     @Before
     public void testing(){
-        entradaDiccionario = new EntradaDiccionario("Descripcion Test", 123, "BPMN", "Matriz");
+        entradaDiccionario = new EntradaDiccionario("Descripcion Test", "123123", 123, "BPMN", "Matriz");
         entradaDiccionario.set_id("123");
     }
 
@@ -30,13 +30,13 @@ public class EntradaDiccionarioTest {
 
     @Test
     public void getDescripcion() {
-        Assert.assertEquals("Descripcion Test", entradaDiccionario.getDescripcion());
+        Assert.assertEquals("Descripcion Test", entradaDiccionario.getTitulo());
     }
 
     @Test
     public void setDescripcion() {
-        entradaDiccionario.setDescripcion("Descripcion Test2");
-        Assert.assertEquals("Descripcion Test2", entradaDiccionario.getDescripcion());
+        entradaDiccionario.setTitulo("Descripcion Test2");
+        Assert.assertEquals("Descripcion Test2", entradaDiccionario.getTitulo());
     }
 
     @Test

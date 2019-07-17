@@ -3,20 +3,20 @@ package backend.models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document
 public class ArquitecturaEmpresarial {
     @Id
     private String _id;
     private String titulo;
-    private String descripcion;
 
     public ArquitecturaEmpresarial(){
 
     }
 
-    public ArquitecturaEmpresarial(String titulo, String descripcion){
+    public ArquitecturaEmpresarial(String titulo){
         this.titulo = titulo;
-        this.descripcion = descripcion;
     }
 
     public String get_id() {
@@ -33,13 +33,5 @@ public class ArquitecturaEmpresarial {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 }

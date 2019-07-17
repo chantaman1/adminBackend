@@ -24,40 +24,35 @@ public class ArquitecturaEmpresarialServiceTest {
     @Test
     public void createTest() {
         String titulo = "Titulo test";
-        String descripcion = "Descripcion test";
 
-        Mockito.when(arquitecturaEmpresarialRepository.save(Mockito.any(ArquitecturaEmpresarial.class))).thenReturn(new ArquitecturaEmpresarial(titulo, descripcion));
+        Mockito.when(arquitecturaEmpresarialRepository.save(Mockito.any(ArquitecturaEmpresarial.class))).thenReturn(new ArquitecturaEmpresarial(titulo));
 
-        ArquitecturaEmpresarial arquitecturaEmpresarial = arquitecturaEmpresarialService.create(titulo, descripcion);
+        ArquitecturaEmpresarial arquitecturaEmpresarial = arquitecturaEmpresarialService.create(titulo);
         Assert.assertEquals(arquitecturaEmpresarial.getTitulo(), titulo);
-        Assert.assertEquals(arquitecturaEmpresarial.getDescripcion(), descripcion);
     }
 
     @Test
     public void updateTest() {
         String titulo = "Titulo test";
-        String descripcion = "Descripcion test";
-        ArquitecturaEmpresarial arquitecturaEmpresarialTest = new ArquitecturaEmpresarial(titulo, descripcion);
+        ArquitecturaEmpresarial arquitecturaEmpresarialTest = new ArquitecturaEmpresarial(titulo);
         String id = "1";
 
         Mockito.when(arquitecturaEmpresarialRepository.findById(id)).thenReturn(java.util.Optional.ofNullable(arquitecturaEmpresarialTest));
-        Mockito.when(arquitecturaEmpresarialRepository.save(Mockito.any(ArquitecturaEmpresarial.class))).thenReturn(new ArquitecturaEmpresarial(titulo, descripcion));
+        Mockito.when(arquitecturaEmpresarialRepository.save(Mockito.any(ArquitecturaEmpresarial.class))).thenReturn(new ArquitecturaEmpresarial(titulo));
 
-        ArquitecturaEmpresarial arquitecturaEmpresarial = arquitecturaEmpresarialService.update(id, titulo, descripcion);
+        ArquitecturaEmpresarial arquitecturaEmpresarial = arquitecturaEmpresarialService.update(id, titulo);
 
         Assert.assertEquals(arquitecturaEmpresarial.getTitulo(), titulo);
-        Assert.assertEquals(arquitecturaEmpresarial.getDescripcion(), descripcion);
     }
 
     @Test
     public void updateTestIfNotFound() {
         String titulo = "Titulo test";
-        String descripcion = "Descripcion test";
         String id = "1";
 
         Mockito.when(arquitecturaEmpresarialRepository.findById(id)).thenReturn(java.util.Optional.ofNullable(null));
 
-        ArquitecturaEmpresarial arquitecturaEmpresarial = arquitecturaEmpresarialService.update(id, titulo, descripcion);
+        ArquitecturaEmpresarial arquitecturaEmpresarial = arquitecturaEmpresarialService.update(id, titulo);
         Assert.assertNull(arquitecturaEmpresarial);
     }
 
@@ -65,7 +60,7 @@ public class ArquitecturaEmpresarialServiceTest {
     public void existTestIfFound() {
         String titulo = "Ejemplo";
 
-        Mockito.when(arquitecturaEmpresarialRepository.findOneByTitulo(titulo)).thenReturn(new ArquitecturaEmpresarial("test", "test"));
+        Mockito.when(arquitecturaEmpresarialRepository.findOneByTitulo(titulo)).thenReturn(new ArquitecturaEmpresarial("test"));
 
         Assert.assertTrue(arquitecturaEmpresarialService.exist(titulo));
     }

@@ -3,6 +3,7 @@ package backend.services;
 import backend.models.EntradaDiccionario;
 import backend.repositories.EntradaDiccionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,19 +14,19 @@ public class EntradaDiccionarioService {
     @Autowired
     EntradaDiccionarioRepository entradaDiccionarioRepository;
 
-    public EntradaDiccionario create(String descripcion, int indentacion, String bpmn, String matrizRECI){
-        return entradaDiccionarioRepository.save(new EntradaDiccionario(descripcion, indentacion, bpmn, matrizRECI));
+    public EntradaDiccionario create(String titulo, String idArquitecturaEmpresarial, int indentacion, String bpmn, String matrizRECI){
+        return entradaDiccionarioRepository.save(new EntradaDiccionario(titulo, idArquitecturaEmpresarial, indentacion, bpmn, matrizRECI));
     }
 
-    public List<EntradaDiccionario> getAll(){
-        return entradaDiccionarioRepository.findAll();
+    public List<EntradaDiccionario> getAll(String idArquitecturaEmpresarial){
+        return entradaDiccionarioRepository.findAllByIdArquitecturaEmpresarialOrderByIndentacionAsc(idArquitecturaEmpresarial);
     }
 
-    public EntradaDiccionario updateEntradaDiccionario(String id, String descripcion, int indentacion){
+    public EntradaDiccionario updateEntradaDiccionario(String id, String titulo, int indentacion){
         try {
             EntradaDiccionario res = entradaDiccionarioRepository.findById(id).get();
             if (res != null) {
-                res.setDescripcion(descripcion);
+                res.setTitulo(titulo);
                 res.setIndentacion(indentacion);
                 return entradaDiccionarioRepository.save(res);
             } else {

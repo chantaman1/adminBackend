@@ -13,20 +13,19 @@ public class ArquitecturaEmpresarialService {
     @Autowired
     ArquitecturaEmpresarialRepository arquitecturaEmpresarialRepository;
 
-    public ArquitecturaEmpresarial create(String titulo, String descripcion){
-        return arquitecturaEmpresarialRepository.save(new ArquitecturaEmpresarial(titulo, descripcion));
+    public ArquitecturaEmpresarial create(String titulo){
+        return arquitecturaEmpresarialRepository.save(new ArquitecturaEmpresarial(titulo));
     }
 
     public List<ArquitecturaEmpresarial> findAll(){
         return arquitecturaEmpresarialRepository.findAll();
     }
 
-    public ArquitecturaEmpresarial update(String id, String titulo, String descripcion){
+    public ArquitecturaEmpresarial update(String id, String titulo){
         try {
             ArquitecturaEmpresarial res = arquitecturaEmpresarialRepository.findById(id).get();
             if(res != null){
                 res.setTitulo(titulo);
-                res.setDescripcion(descripcion);
                 return arquitecturaEmpresarialRepository.save(res);
             }
             else{
@@ -45,6 +44,15 @@ public class ArquitecturaEmpresarialService {
         }
         else{
             return false;
+        }
+    }
+
+    public ArquitecturaEmpresarial getByTitulo(String titulo){
+        if(titulo != null){
+            return arquitecturaEmpresarialRepository.findOneByTitulo(titulo);
+        }
+        else{
+            return null;
         }
     }
 }

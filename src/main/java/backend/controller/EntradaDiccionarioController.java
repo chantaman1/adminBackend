@@ -2,12 +2,15 @@ package backend.controller;
 
 import backend.fileUploader.UploadFileResponse;
 import backend.fileUploader.controllers.FileController;
+import backend.models.ArquitecturaEmpresarial;
 import backend.models.EntradaDiccionario;
+import backend.services.ArquitecturaEmpresarialService;
 import backend.services.EntradaDiccionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,18 +21,22 @@ public class EntradaDiccionarioController {
     EntradaDiccionarioService entradaDiccionarioService;
     @Autowired
     FileController fileController;
+    @Autowired
+    ArquitecturaEmpresarialService arquitecturaEmpresarialService;
 
     @PostMapping("/diccionario/create")
     @ResponseBody
-    public HashMap<String, Object> create(@RequestParam("fileBPMN") MultipartFile fileBPMN, @RequestParam("fileMatrix") MultipartFile fileMatrix, @RequestBody Map<String, Object> jsonData){
+    public HashMap<String, Object> create(@RequestParam("fileBPMN") MultipartFile fileBPMN, @RequestBody Map<String, Object> jsonData){
         HashMap<String, Object> map = new HashMap<>();
-        String descripcion = jsonData.get("descripcion").toString();
+        String titulo = jsonData.get("titulo").toString();
         int indentacion = Integer.parseInt(jsonData.get("indentacion").toString());
-        if(descripcion != null && fileBPMN != null && fileMatrix != null){
+        String tituloEmp = jsonData.get("tituloEmpresarial").toString();
+        ArquitecturaEmpresarial arquitectura = arquitecturaEmpresarialService.getByTitulo(tituloEmp);
+        if(titulo != null && fileBPMN != null){
             UploadFileResponse resultBpmn = fileController.uploadFile(fileBPMN);
-            UploadFileResponse resultMatrix = fileController.uploadFile(fileMatrix);
-            if(resultBpmn != null && resultMatrix != null){
-                EntradaDiccionario result = entradaDiccionarioService.create(descripcion, indentacion, resultBpmn.getFileDownloadUri(), resultMatrix.getFileDownloadUri());
+            //UploadFileResponse resultMatrix = fileController.uploadFile(fileMatrix);
+            if(resultBpmn != null){
+                EntradaDiccionario result = entradaDiccionarioService.create(titulo, arquitectura.get_id(), indentacion, resultBpmn.getFileDownloadUri(), "");
                 if(result != null){
                     map.put("status", 201);
                     map.put("message", "OK");
@@ -175,8 +182,18 @@ public class EntradaDiccionarioController {
 
     @GetMapping("/diccionario/")
     @ResponseBody
-    public List<EntradaDiccionario> getAll(){
-        return entradaDiccionarioService.getAll();
+    public List<HashMap<String, Object>> getAll(){
+        List<HashMap<String, Object>> result = new ArrayList<>();
+        HashMap<String, Object> map = new HashMap<>();
+        List<ArquitecturaEmpresarial> arquitecturas = arquitecturaEmpresarialService.findAll();
+        for(ArquitecturaEmpresarial arquitectura : arquitecturas){
+            List<EntradaDiccionario> diccionarios = entradaDiccionarioService.getAll(arquitectura.get_id());
+            map.put("titulo", arquitectura.getTitulo());
+            map.put("diccionario", diccionarios);
+            result.add(map);
+            map = new HashMap<>();
+        }
+        return result;
     }
 
     @GetMapping("diccionario/{id}")

@@ -28,9 +28,8 @@ public class ArquitecturaEmpresarialController {
     @ResponseBody
     public HashMap<String, Object> create(@RequestBody Map<String, Object> jsonData){
         String titulo = jsonData.get("titulo").toString();
-        String descripcion = jsonData.get("descripcion").toString();
         HashMap<String, Object> map = new HashMap<>();
-        if(titulo != null && descripcion != null){
+        if(titulo != null){
             if(arquitecturaEmpresarialService.exist(titulo)){
                 map.put("status", 400);
                 map.put("message", "This already exist.");
@@ -38,13 +37,12 @@ public class ArquitecturaEmpresarialController {
                 return map;
             }
             else{
-                ArquitecturaEmpresarial res = arquitecturaEmpresarialService.create(titulo, descripcion);
+                ArquitecturaEmpresarial res = arquitecturaEmpresarialService.create(titulo);
                 if(res != null){
                     map.put("status", 201);
                     map.put("message", "OK");
                     map.put("result", true);
                     map.put("titulo", titulo);
-                    map.put("descripcion", descripcion);
                     return map;
                 }
                 else{
@@ -67,17 +65,15 @@ public class ArquitecturaEmpresarialController {
     @ResponseBody
     public HashMap<String, Object> update(@RequestBody Map<String, Object> jsonData){
         String titulo = jsonData.get("titulo").toString();
-        String descripcion = jsonData.get("descripcion").toString();
         String id = jsonData.get("id").toString();
         HashMap<String, Object> map = new HashMap<>();
-        if(titulo != null && descripcion != null && id != null){
-            ArquitecturaEmpresarial res = arquitecturaEmpresarialService.update(id, titulo, descripcion);
+        if(titulo != null && id != null){
+            ArquitecturaEmpresarial res = arquitecturaEmpresarialService.update(id, titulo);
             if(res != null){
                 map.put("status", 200);
                 map.put("message", "OK");
                 map.put("result", true);
                 map.put("titulo", titulo);
-                map.put("descripcion", descripcion);
                 return map;
             }
             else{
