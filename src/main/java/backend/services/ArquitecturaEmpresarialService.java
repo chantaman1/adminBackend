@@ -55,4 +55,8 @@ public class ArquitecturaEmpresarialService {
             return null;
         }
     }
+
+    public void deleteById(String id){
+        arquitecturaEmpresarialRepository.deleteById(id);
+    }
 }

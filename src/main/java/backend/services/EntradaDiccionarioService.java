@@ -100,4 +100,9 @@ public class EntradaDiccionarioService {
             return null;
         }
     }
+
+    public void deleteById(String id){
+        EntradaDiccionario res = entradaDiccionarioRepository.findById(id).get();
+        entradaDiccionarioRepository.delete(res);
+    }
 }

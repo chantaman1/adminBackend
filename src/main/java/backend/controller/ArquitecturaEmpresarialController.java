@@ -1,7 +1,9 @@
 package backend.controller;
 
 import backend.models.ArquitecturaEmpresarial;
+import backend.models.EntradaDiccionario;
 import backend.services.ArquitecturaEmpresarialService;
+import backend.services.EntradaDiccionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,8 @@ import java.util.Map;
 public class ArquitecturaEmpresarialController {
     @Autowired
     ArquitecturaEmpresarialService arquitecturaEmpresarialService;
+    @Autowired
+    EntradaDiccionarioService entradaDiccionarioService;
 
     @GetMapping("/arquitectura/")
     @ResponseBody
@@ -86,6 +90,39 @@ public class ArquitecturaEmpresarialController {
         else{
             map.put("status", 400);
             map.put("message", "one or more fields are empty.");
+            map.put("result", false);
+            return map;
+        }
+    }
+
+    @DeleteMapping("/arquitectura/delete")
+    @ResponseBody
+    public HashMap<String, Object> delete(@RequestBody Map<String, Object> jsonData){
+        String titulo = jsonData.get("titulo").toString();
+        HashMap<String, Object> map = new HashMap<>();
+        if(titulo != null){
+            ArquitecturaEmpresarial arquitectura = arquitecturaEmpresarialService.getByTitulo(titulo);
+            if(arquitectura != null){
+                List<EntradaDiccionario> diccionarios = entradaDiccionarioService.getAll(arquitectura.get_id());
+                for(EntradaDiccionario diccionario : diccionarios){
+                    entradaDiccionarioService.deleteById(diccionario.get_id());
+                }
+                arquitecturaEmpresarialService.deleteById(arquitectura.get_id());
+                map.put("status", 200);
+                map.put("message", "OK");
+                map.put("result", true);
+                return map;
+            }
+            else{
+                map.put("status", 404);
+                map.put("message", "NULL");
+                map.put("result", false);
+                return map;
+            }
+        }
+        else{
+            map.put("status", 404);
+            map.put("message", "TITULO NOT PROVIDED.");
             map.put("result", false);
             return map;
         }
